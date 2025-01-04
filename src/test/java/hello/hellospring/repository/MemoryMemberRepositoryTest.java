@@ -1,4 +1,4 @@
-package hello.hello_spring.repository;
+package hello.hellospring.repository;
 
 // import org.junit.jupiter.api.Assertions;
 import static org.assertj.core.api.Assertions.*;
