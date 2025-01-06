@@ -3,6 +3,10 @@ package hello.hellospring.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,12 +72,43 @@ public class MemberServiceTest {
 
     @Test
     void findMembers() {
+        //given
+        Member member1 = new Member();
+        member1.setName("Spring1");
+        memberService.join(member1);
 
+        Member member2 = new Member();
+        member2.setName("Spring2");
+        memberService.join(member2);
+
+        List<Member> lst = new ArrayList<>(Arrays.asList(member1));
+        lst.addAll(Arrays.asList(member2));
+
+        //when
+        List<Member> result = memberService.findMembers();
+        
+        //then
+        for (int i = 0; i < result.size(); i++) {
+            assertThat(result.get(i)).isEqualTo(lst.get(i));
+        }
     }
 
     @Test
     void findOne() {
+        // given
+        Member member1 = new Member();
+        member1.setName("Spring1");
+        memberService.join(member1);
 
+        Member member2 = new Member();
+        member2.setName("Spring2");
+        memberService.join(member2);
+
+        //when then
+        memberService.findOne(member2.getId())
+            .ifPresent(m -> {
+                assertThat(m).isEqualTo(member2);
+            });
     }
 
 }
