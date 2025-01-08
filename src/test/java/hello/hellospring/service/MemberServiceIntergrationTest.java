@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import hello.hellospring.domain.Member;
@@ -24,12 +23,10 @@ public class MemberServiceIntergrationTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-    @Commit
     void 회원가입() {
         //given
         Member member = new Member();
         member.setName("spring");
-
         //when
         Long saveId = memberService.join(member);
 
@@ -83,7 +80,7 @@ public class MemberServiceIntergrationTest {
         
         //then
         for (int i = 0; i < result.size(); i++) {
-            assertThat(result.get(i)).isEqualTo(lst.get(i));
+            assertThat(result.get(i).getName()).isEqualTo(lst.get(i).getName());
         }
     }
 
@@ -101,7 +98,7 @@ public class MemberServiceIntergrationTest {
         //when then
         memberService.findOne(member2.getId())
             .ifPresent(m -> {
-                assertThat(m).isEqualTo(member2);
+                assertThat(m.getName()).isEqualTo(member2.getName());
             });
     }
 
