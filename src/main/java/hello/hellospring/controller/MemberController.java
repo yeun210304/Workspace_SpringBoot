@@ -1,12 +1,14 @@
 package hello.hellospring.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
@@ -40,6 +42,18 @@ public class MemberController {
     public String list(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
+        return "members/memberList";
+    }
+
+    @GetMapping("/members/findOne")
+    public String findOne() {
+        return "members/searchMember";
+    }
+
+    @PostMapping("/members/searchMember")
+    public String searchMember(@RequestParam("id") String memberId, Model model) {
+        Optional<Member> member = memberService.findOne(Long.parseLong(memberId));
+        model.addAttribute("member", member.get());
         return "members/memberList";
     }
 

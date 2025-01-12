@@ -3,8 +3,8 @@ package hello.hellospring.repository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import hello.hellospring.domain.Member  ;
 
+import hello.hellospring.domain.Member  ;
 @SuppressWarnings("unchecked")
 public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository {
 

@@ -17,7 +17,7 @@ public class MemberService {
     /**
      * 회원 가입
      * @param member
-     * @return 회원id
+     * @return 회원idz
      */
     public Long join(Member member) {
         validateDuplicateMember(member); // 중복 회원 검증
