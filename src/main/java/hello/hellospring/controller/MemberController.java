@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,11 +51,11 @@ public class MemberController {
         return "members/searchMember";
     }
 
-    @PostMapping("/members/searchMember")
-    public String searchMember(@RequestParam("id") String memberId, Model model) {
+    @GetMapping("/members/searchMember")
+    public ResponseEntity<?> searchMember(@RequestParam("id") String memberId, Model model) {
         Optional<Member> member = memberService.findOne(Long.parseLong(memberId));
-        model.addAttribute("member", member.get());
-        return "members/memberList";
+        model.addAttribute("member", member.orElseGet(Member::new));
+        return ResponseEntity.ok(member);
     }
 
 }
