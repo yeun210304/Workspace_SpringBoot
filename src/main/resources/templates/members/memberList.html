@@ -13,7 +13,7 @@
                 <tr th:each="member : ${members}">
                     <td th:text="${member.id}"></td>
                     <td th:text="${member.name}"></td>
-                    <td><button i="delete" name="delete" th:value="${member.id}">삭제</button></td>
+                    <td><button id="delete" name="delete" th:value="${member.id}">삭제</button></td>
                 </tr>
             </tbody>
         </table>
