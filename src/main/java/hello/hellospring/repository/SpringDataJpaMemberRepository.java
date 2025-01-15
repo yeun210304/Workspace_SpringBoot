@@ -5,9 +5,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import hello.hellospring.domain.Member  ;
-@SuppressWarnings("unchecked")
+
 public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository {
 
+    @SuppressWarnings("unchecked")
     @Override
     public Member save(Member member);
 
