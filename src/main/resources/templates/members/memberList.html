@@ -2,6 +2,7 @@
 <html lang="ko" xmlns="http://www.thymeleaf.org">
 <body>
     <div class="container">
+        
         <table>
             <thead>
                 <tr>
@@ -13,7 +14,13 @@
                 <tr th:each="member : ${members}">
                     <td th:text="${member.id}"></td>
                     <td th:text="${member.name}"></td>
-                    <td><button id="delete" name="delete" th:value="${member.id}">삭제</button></td>
+                    <td>
+                        <form action="/members/deleteMember" method="post">
+                            <input name="id" type="hidden" th:value="${member.id}"/>
+                            <button type="submit">삭제</button></td>
+                        </form>
+                    </form>
+                        
                 </tr>
             </tbody>
         </table>

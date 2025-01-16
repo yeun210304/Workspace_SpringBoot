@@ -52,10 +52,18 @@ public class MemberController {
     }
 
     @GetMapping("/members/searchMember")
-    public ResponseEntity<?> searchMember(@RequestParam("id") String memberId, Model model) {
-        Optional<Member> member = memberService.findOne(Long.parseLong(memberId));
+    public ResponseEntity<?> searchMember(@RequestParam("id") String id, Model model) {
+        Optional<Member> member = memberService.findOne(Long.parseLong(id));
         model.addAttribute("member", member.orElseGet(Member::new));
         return ResponseEntity.ok(member);
+    }
+
+    @PostMapping("/members/deleteMember")
+    public String deleteMember(@RequestParam("id") Long id, Model model) {
+        memberService.deleteMember(id);
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "redirect:/members";
     }
 
 }

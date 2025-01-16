@@ -20,4 +20,7 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Lon
 
     @Override
     List<Member> findAll();
+
+    @Override
+    void deleteById(Long id);
 }

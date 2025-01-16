@@ -60,4 +60,9 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
             return member;
         };
     }
+
+    @Override
+    public void deleteById(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+    }
 }

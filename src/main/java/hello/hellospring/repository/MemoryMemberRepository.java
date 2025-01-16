@@ -40,5 +40,10 @@ public class MemoryMemberRepository implements MemberRepository {
     public void clearStore() {
         store.clear();
     }
+
+    @Override
+    public void deleteById(Long id) {
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+    }
 }
 
